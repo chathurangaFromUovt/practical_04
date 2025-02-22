@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .calculator {
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: #f8f9fa;
+        }
+
+        .btn {
+            height: 60px;
+            font-size: 1.2rem;
+        }
+
+        .form-control {
+            text-align: right;
+            font-size: 1.5rem;
+        }
+
+        /* Add border for number and decimal point buttons */
+        .btn-number {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Same size for C, M, M+, and CL buttons */
+        .btn-compact {
+            height: 60px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculator">
+            <input type="text" class="form-control mb-3" id="display" readonly>
+            <div class="row g-2">
+                <div class="col-3"><button class="btn btn-danger w-100 btn-compact" id="clear">C</button></div>
+                <div class="col-3"><button class="btn btn-secondary w-100 btn-compact" id="clear_all">CL</button></div>
+                <div class="col-3"><button class="btn btn-secondary w-100 btn-compact" id="memory">M</button></div>
+                <div class="col-3"><button class="btn btn-secondary w-100 btn-compact" id="save">S</button></div>
+
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="7">7</button></div>
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="8">8</button></div>
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="9">9</button></div>
+                <div class="col-3" rowspan="2"><button class="btn btn-secondary w-100" id="divide">/</button></div>
+
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="4">4</button></div>
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="5">5</button></div>
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="6">6</button></div>
+                <div class="col-3" rowspan="2"><button class="btn btn-secondary w-100" id="multiply">*</button></div>
+
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="1">1</button></div>
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="2">2</button></div>
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="3">3</button></div>
+                <div class="col-3" rowspan="2"><button class="btn btn-secondary w-100" id="subtract">-</button></div>
+
+                <div class="col-6"><button class="btn btn-light w-100 btn-number" id="0">0</button></div>
+                <div class="col-3"><button class="btn btn-light w-100 btn-number" id="decimal">.</button></div>
+                <div class="col-3" rowspan="2"><button class="btn btn-secondary w-100" id="add">+</button></div>
+                <div class="col-12"><button class="btn btn-primary w-100" id="equal">=</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+<script>
+
+    class Calculator {
+
+        constructor() {
+
+            this.display = document.getElementById('display');
+            this.input = '';
+            this.memory = 0;
+
+            document.getElementById('0').addEventListener('click', () => {
+
+                this.input += '0';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('1').addEventListener('click', () => {
+
+                this.input += '1';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('2').addEventListener('click', () => {
+
+                this.input += '2';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('3').addEventListener('click', () => {
+
+                this.input += '3';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('4').addEventListener('click', () => {
+
+                this.input += '4';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('5').addEventListener('click', () => {
+
+                this.input += '5';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('6').addEventListener('click', () => {
+
+                this.input += '6';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('7').addEventListener('click', () => {
+
+                this.input += '7';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('8').addEventListener('click', () => {
+
+                this.input += '8';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('9').addEventListener('click', () => {
+
+                this.input += '9';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('decimal').addEventListener('click', () => {
+
+                this.input += '.';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('add').addEventListener('click', () => {
+
+                this.input += '+';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('subtract').addEventListener('click', () => {
+
+                this.input += '-';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('multiply').addEventListener('click', () => {
+
+                this.input += '*';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('divide').addEventListener('click', () => {
+
+                this.input += '/';
+                this.display.value = this.input;
+            });
+
+            document.getElementById('clear').addEventListener('click', () => {
+
+                this.input = '';
+                this.display.value = '';
+            });
+
+            document.getElementById('clear_all').addEventListener('click', () => {
+
+                this.input = '';
+                this.display.value = '';
+                this.memory = 0;
+            });
+
+            document.getElementById('save').addEventListener('click', () => {
+
+                this.memory = parseFloat(this.input);
+                this.display.value = 'Saved';
+                this.input = '';
+            });
+
+            document.getElementById('memory').addEventListener('click', () => {
+
+                this.display.value = this.memory;
+                this.input = this.memory;
+            });
+
+
+            document.getElementById('equal').addEventListener('click', this.getAns.bind(this));
+
+        }
+
+        getAns() {
+
+            try {
+
+                this.input = eval(this.input).toString();
+                this.display.value = this.input;
+            }
+            catch {
+
+                this.display.value = 'Invalid Input';
+            }
+        }
+    }
+
+    var myCalculator = new Calculator();
+
+
+</script>
+
+
+</html>
